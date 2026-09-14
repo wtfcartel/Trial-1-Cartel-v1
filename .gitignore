@@ -43,3 +43,6 @@ next-env.d.ts
 # prisma sqlite dev db
 /prisma/dev.db
 /prisma/dev.db-journal
+
+# uploaded nurse certificates (local dev storage only — use object storage in production)
+/uploads

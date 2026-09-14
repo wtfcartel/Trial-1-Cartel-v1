@@ -14,6 +14,7 @@ datasource db {
 enum Role {
   FACILITY_ADMIN
   NURSE
+  ADMIN
 }
 
 enum ShiftStatus {
@@ -29,6 +30,12 @@ enum ClaimStatus {
   DECLINED
   CANCELLED
   COMPLETED
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
 }
 
 model Facility {
@@ -63,6 +70,55 @@ model NurseProfile {
   registrationNo String
   qualifications String
   bio            String?
+
+  verificationStatus VerificationStatus @default(PENDING)
+  verificationNotes  String?
+  verifiedAt         DateTime?
+
+  certificates Certificate[]
+  induction    InductionProgress[]
+  availability AvailabilityBlock[]
+}
+
+model Certificate {
+  id             String       @id @default(cuid())
+  nurseProfileId String
+  nurseProfile   NurseProfile @relation(fields: [nurseProfileId], references: [id])
+  label          String
+  fileName       String
+  storedPath     String
+  mimeType       String
+  uploadedAt     DateTime     @default(now())
+}
+
+model InductionModule {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  order       Int    @default(0)
+
+  progress InductionProgress[]
+}
+
+model InductionProgress {
+  id             String          @id @default(cuid())
+  nurseProfileId String
+  nurseProfile   NurseProfile    @relation(fields: [nurseProfileId], references: [id])
+  moduleId       String
+  module         InductionModule @relation(fields: [moduleId], references: [id])
+  completedAt    DateTime        @default(now())
+
+  @@unique([nurseProfileId, moduleId])
+}
+
+model AvailabilityBlock {
+  id             String       @id @default(cuid())
+  nurseProfileId String
+  nurseProfile   NurseProfile @relation(fields: [nurseProfileId], references: [id])
+  startsAt       DateTime
+  endsAt         DateTime
+  note           String?
+  createdAt      DateTime     @default(now())
 }
 
 model Shift {
@@ -76,6 +132,9 @@ model Shift {
   requiredQualification String
   hourlyRateCents       Int
   notes                 String?
+  // Non-identifying handover/care details for the confirmed nurse only —
+  // see README for why this must not carry patient-identifiable health info.
+  careNotes             String?
   status                ShiftStatus @default(OPEN)
   createdAt             DateTime    @default(now())
 

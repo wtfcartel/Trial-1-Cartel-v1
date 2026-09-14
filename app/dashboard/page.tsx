@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/current-user";
 import { formatDateTime, formatMoney } from "@/lib/format";
+import { getNurseAvailability } from "@/lib/nurse-status";
 
 const statusStyles: Record<string, string> = {
   OPEN: "bg-blue-50 text-blue-700",
@@ -95,8 +96,14 @@ async function FacilityDashboard({ facilityId }: { facilityId: string }) {
   );
 }
 
-async function NurseDashboard({ nurseId }: { nurseId: string }) {
-  const [openShifts, myClaims] = await Promise.all([
+async function NurseDashboard({
+  nurseId,
+  nurseProfileId,
+}: {
+  nurseId: string;
+  nurseProfileId: string;
+}) {
+  const [openShifts, myClaims, availability] = await Promise.all([
     prisma.shift.findMany({
       where: {
         status: "OPEN",
@@ -110,10 +117,33 @@ async function NurseDashboard({ nurseId }: { nurseId: string }) {
       orderBy: { createdAt: "desc" },
       include: { shift: { include: { facility: true } } },
     }),
+    getNurseAvailability(nurseProfileId),
   ]);
 
   return (
     <div className="space-y-12">
+      {!availability.isAvailable && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+          <p className="font-medium">Your account isn&apos;t available for shifts yet.</p>
+          <ul className="mt-2 list-inside list-disc space-y-1">
+            <li>
+              Credential verification:{" "}
+              {availability.isVerified ? "verified" : "pending review"} —{" "}
+              <Link href="/credentials" className="underline">
+                manage credentials
+              </Link>
+            </li>
+            <li>
+              Induction training: {availability.completedModules}/{availability.totalModules}{" "}
+              modules complete —{" "}
+              <Link href="/induction" className="underline">
+                complete induction
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
+
       <div>
         <h1 className="text-2xl font-semibold text-zinc-900">Open shifts</h1>
         {openShifts.length === 0 ? (
@@ -181,14 +211,15 @@ async function NurseDashboard({ nurseId }: { nurseId: string }) {
 export default async function DashboardPage() {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  if (user.role === "ADMIN") redirect("/admin");
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       {user.role === "FACILITY_ADMIN" && user.facilityId ? (
         <FacilityDashboard facilityId={user.facilityId} />
-      ) : (
-        <NurseDashboard nurseId={user.id} />
-      )}
+      ) : user.nurseProfile ? (
+        <NurseDashboard nurseId={user.id} nurseProfileId={user.nurseProfile.id} />
+      ) : null}
     </div>
   );
 }

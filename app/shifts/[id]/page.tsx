@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/current-user";
 import { formatDateTime, formatMoney } from "@/lib/format";
 import { claimShiftAction, respondToClaimAction } from "@/lib/actions/shifts";
+import { getNurseAvailability } from "@/lib/nurse-status";
 
 const statusStyles: Record<string, string> = {
   OPEN: "bg-blue-50 text-blue-700",
@@ -13,6 +14,9 @@ const statusStyles: Record<string, string> = {
   REQUESTED: "bg-amber-50 text-amber-700",
   CONFIRMED: "bg-green-50 text-green-700",
   DECLINED: "bg-zinc-100 text-zinc-500",
+  VERIFIED: "bg-green-50 text-green-700",
+  PENDING: "bg-amber-50 text-amber-700",
+  REJECTED: "bg-red-50 text-red-700",
 };
 
 function Badge({ status }: { status: string }) {
@@ -44,6 +48,11 @@ export default async function ShiftDetailPage({
   const user = await getCurrentUser();
   const isOwner = user?.role === "FACILITY_ADMIN" && user.facilityId === shift.facilityId;
   const myClaim = user ? shift.claims.find((c) => c.nurseId === user.id) : undefined;
+  const canSeeCareNotes = isOwner || myClaim?.status === "CONFIRMED";
+  const nurseAvailability =
+    user?.role === "NURSE" && user.nurseProfile
+      ? await getNurseAvailability(user.nurseProfile.id)
+      : null;
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
@@ -80,6 +89,12 @@ export default async function ShiftDetailPage({
             <dd className="text-zinc-900">{shift.notes}</dd>
           </div>
         )}
+        {shift.careNotes && canSeeCareNotes && (
+          <div className="col-span-2">
+            <dt className="text-zinc-500">Care notes (confirmed nurse only)</dt>
+            <dd className="text-zinc-900">{shift.careNotes}</dd>
+          </div>
+        )}
       </dl>
 
       {/* Nurse view */}
@@ -91,8 +106,30 @@ export default async function ShiftDetailPage({
                 You claimed this shift —{" "}
                 <span className="font-medium text-zinc-900">status: {myClaim.status}</span>
               </p>
+              {myClaim.status === "CONFIRMED" && (
+                <a
+                  href={`/api/shifts/${shift.id}/invite.ics`}
+                  className="mt-2 inline-block text-sm font-medium text-zinc-900 underline"
+                >
+                  Add to calendar (.ics)
+                </a>
+              )}
             </div>
-          ) : shift.status === "OPEN" ? (
+          ) : shift.status !== "OPEN" ? (
+            <p className="text-sm text-zinc-500">This shift is no longer open.</p>
+          ) : nurseAvailability && !nurseAvailability.isAvailable ? (
+            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+              Complete{" "}
+              <Link href="/credentials" className="underline">
+                credential verification
+              </Link>{" "}
+              and{" "}
+              <Link href="/induction" className="underline">
+                induction training
+              </Link>{" "}
+              before claiming shifts.
+            </div>
+          ) : (
             <form action={claimShiftAction.bind(null, shift.id)}>
               <button
                 type="submit"
@@ -101,8 +138,6 @@ export default async function ShiftDetailPage({
                 Claim this shift
               </button>
             </form>
-          ) : (
-            <p className="text-sm text-zinc-500">This shift is no longer open.</p>
           )}
         </div>
       )}
@@ -128,7 +163,12 @@ export default async function ShiftDetailPage({
               {shift.claims.map((claim) => (
                 <li key={claim.id} className="flex items-center justify-between gap-4 p-4">
                   <div>
-                    <p className="font-medium text-zinc-900">{claim.nurse.name}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-zinc-900">{claim.nurse.name}</p>
+                      {claim.nurse.nurseProfile && (
+                        <Badge status={claim.nurse.nurseProfile.verificationStatus} />
+                      )}
+                    </div>
                     <p className="text-sm text-zinc-500">
                       {claim.nurse.nurseProfile?.qualifications} ·{" "}
                       {claim.nurse.nurseProfile?.registrationNo}
@@ -155,7 +195,17 @@ export default async function ShiftDetailPage({
                         </form>
                       </>
                     ) : (
-                      <Badge status={claim.status} />
+                      <>
+                        {claim.status === "CONFIRMED" && (
+                          <a
+                            href={`/api/shifts/${shift.id}/invite.ics`}
+                            className="text-sm font-medium text-zinc-900 underline"
+                          >
+                            Invite (.ics)
+                          </a>
+                        )}
+                        <Badge status={claim.status} />
+                      </>
                     )}
                   </div>
                 </li>

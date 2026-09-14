@@ -4,17 +4,10 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { getSession } from "@/lib/session";
+import { requireUser } from "@/lib/require-user";
+import { getNurseAvailability } from "@/lib/nurse-status";
 
 export type ActionState = { error?: string } | undefined;
-
-async function requireUser() {
-  const session = await getSession();
-  if (!session) throw new Error("Not authenticated");
-  const user = await prisma.user.findUnique({ where: { id: session.userId } });
-  if (!user) throw new Error("Not authenticated");
-  return user;
-}
 
 const createShiftSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -24,6 +17,7 @@ const createShiftSchema = z.object({
   requiredQualification: z.string().min(1, "Required qualification is required"),
   hourlyRate: z.coerce.number().positive("Hourly rate must be greater than 0"),
   notes: z.string().optional(),
+  careNotes: z.string().optional(),
 });
 
 export async function createShiftAction(
@@ -60,6 +54,7 @@ export async function createShiftAction(
       requiredQualification: data.requiredQualification,
       hourlyRateCents: Math.round(data.hourlyRate * 100),
       notes: data.notes || null,
+      careNotes: data.careNotes || null,
     },
   });
 
@@ -68,9 +63,16 @@ export async function createShiftAction(
 }
 
 export async function claimShiftAction(shiftId: string) {
-  const user = await requireUser();
-  if (user.role !== "NURSE") {
-    throw new Error("Only nurse accounts can claim shifts");
+  const user = await requireUser("NURSE");
+  if (!user.nurseProfile) {
+    throw new Error("Nurse profile not found");
+  }
+
+  const availability = await getNurseAvailability(user.nurseProfile.id);
+  if (!availability.isAvailable) {
+    throw new Error(
+      "Complete credential verification and induction training before claiming shifts"
+    );
   }
 
   const shift = await prisma.shift.findUnique({ where: { id: shiftId } });

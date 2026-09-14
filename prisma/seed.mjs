@@ -28,7 +28,48 @@ async function main() {
     },
   });
 
-  const nurse = await prisma.user.upsert({
+  await prisma.user.upsert({
+    where: { email: "admin@demo.test" },
+    update: {},
+    create: {
+      email: "admin@demo.test",
+      passwordHash,
+      name: "Priya (Compliance)",
+      role: "ADMIN",
+    },
+  });
+
+  const inductionModulesData = [
+    {
+      id: "induction-manual-handling",
+      title: "Manual handling",
+      description: "Safe patient handling and lifting techniques.",
+      order: 1,
+    },
+    {
+      id: "induction-infection-control",
+      title: "Infection control",
+      description: "Hand hygiene, PPE, and standard precautions.",
+      order: 2,
+    },
+    {
+      id: "induction-fire-safety",
+      title: "Fire safety",
+      description: "Evacuation procedures and fire equipment locations.",
+      order: 3,
+    },
+  ];
+  for (const inductionModule of inductionModulesData) {
+    await prisma.inductionModule.upsert({
+      where: { id: inductionModule.id },
+      update: {},
+      create: inductionModule,
+    });
+  }
+
+  // A fully onboarded nurse — verified, induction complete — so the core
+  // claim/confirm flow keeps working out of the box.
+  const verifiedNurse = await prisma.user.upsert({
     where: { email: "nurse@demo.test" },
     update: {},
     create: {
@@ -40,6 +81,42 @@ async function main() {
         create: {
           registrationNo: "AHPRA-1234567",
           qualifications: "RN, Aged Care, Wound Care",
+          verificationStatus: "VERIFIED",
+          verifiedAt: new Date(),
+        },
+      },
+    },
+    include: { nurseProfile: true },
+  });
+  if (verifiedNurse.nurseProfile) {
+    for (const inductionModule of inductionModulesData) {
+      await prisma.inductionProgress.upsert({
+        where: {
+          nurseProfileId_moduleId: {
+            nurseProfileId: verifiedNurse.nurseProfile.id,
+            moduleId: inductionModule.id,
+          },
+        },
+        update: {},
+        create: { nurseProfileId: verifiedNurse.nurseProfile.id, moduleId: inductionModule.id },
+      });
+    }
+  }
+
+  // A newly signed-up nurse who hasn't finished onboarding yet — demonstrates
+  // the verification/induction gate and the admin review queue.
+  await prisma.user.upsert({
+    where: { email: "newnurse@demo.test" },
+    update: {},
+    create: {
+      email: "newnurse@demo.test",
+      passwordHash,
+      name: "Alex Chen",
+      role: "NURSE",
+      nurseProfile: {
+        create: {
+          registrationNo: "AHPRA-7654321",
+          qualifications: "EN, Palliative Care",
         },
       },
     },
@@ -62,10 +139,11 @@ async function main() {
       requiredQualification: "RN, Aged Care experience",
       hourlyRateCents: 6500,
       notes: "Handover at 21:45. Ask for Sam at reception.",
+      careNotes: "One resident is a fall risk and needs 30-minute checks overnight.",
     },
   });
 
-  console.log("Seeded:", { facility: facility.name, nurse: nurse.email });
+  console.log("Seeded facility, admin, nurses (one verified, one pending), and a demo shift.");
 }
 
 main()

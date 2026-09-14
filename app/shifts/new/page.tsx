@@ -98,7 +98,7 @@ export default function NewShiftPage() {
 
         <div>
           <label htmlFor="notes" className="block text-sm font-medium text-zinc-700">
-            Notes (optional)
+            Notes (optional, visible to all nurses browsing)
           </label>
           <textarea
             id="notes"
@@ -106,6 +106,23 @@ export default function NewShiftPage() {
             rows={3}
             className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
           />
+        </div>
+
+        <div>
+          <label htmlFor="careNotes" className="block text-sm font-medium text-zinc-700">
+            Care/handover notes (optional, shown only to the confirmed nurse)
+          </label>
+          <textarea
+            id="careNotes"
+            name="careNotes"
+            rows={3}
+            placeholder="e.g. 1:1 fall-risk supervision, mobility assistance — do not include patient names or identifying details"
+            className="mt-1 w-full rounded-md border border-zinc-300 px-3 py-2 text-sm"
+          />
+          <p className="mt-1 text-xs text-zinc-500">
+            This is stored as plain text — do not enter patient-identifiable
+            health information here.
+          </p>
         </div>
 
         {state?.error && <p className="text-sm text-red-600">{state.error}</p>}

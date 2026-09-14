@@ -14,16 +14,41 @@ export async function Nav() {
         <nav className="flex items-center gap-4 text-sm">
           {user ? (
             <>
-              <Link href="/dashboard" className="text-zinc-600 hover:text-zinc-900">
-                Dashboard
-              </Link>
+              {user.role !== "ADMIN" && (
+                <Link href="/dashboard" className="text-zinc-600 hover:text-zinc-900">
+                  Dashboard
+                </Link>
+              )}
               {user.role === "FACILITY_ADMIN" && (
                 <Link href="/shifts/new" className="text-zinc-600 hover:text-zinc-900">
                   Post a shift
                 </Link>
               )}
+              {user.role === "NURSE" && (
+                <>
+                  <Link href="/schedule" className="text-zinc-600 hover:text-zinc-900">
+                    Schedule
+                  </Link>
+                  <Link href="/induction" className="text-zinc-600 hover:text-zinc-900">
+                    Induction
+                  </Link>
+                  <Link href="/credentials" className="text-zinc-600 hover:text-zinc-900">
+                    Credentials
+                  </Link>
+                </>
+              )}
+              {user.role === "ADMIN" && (
+                <Link href="/admin" className="text-zinc-600 hover:text-zinc-900">
+                  Review credentials
+                </Link>
+              )}
               <span className="text-zinc-400">
-                {user.name} · {user.role === "FACILITY_ADMIN" ? "Facility" : "Nurse"}
+                {user.name} ·{" "}
+                {user.role === "FACILITY_ADMIN"
+                  ? "Facility"
+                  : user.role === "ADMIN"
+                    ? "Admin"
+                    : "Nurse"}
               </span>
               <form action={logoutAction}>
                 <button
