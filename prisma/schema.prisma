@@ -1,0 +1,96 @@
+// Ad Hoc Nursing marketplace — data model
+// Dev uses SQLite for zero-setup local running; swap the datasource to
+// Postgres for production (see README).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  FACILITY_ADMIN
+  NURSE
+}
+
+enum ShiftStatus {
+  OPEN
+  FILLED
+  CANCELLED
+  COMPLETED
+}
+
+enum ClaimStatus {
+  REQUESTED
+  CONFIRMED
+  DECLINED
+  CANCELLED
+  COMPLETED
+}
+
+model Facility {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  createdAt DateTime @default(now())
+
+  admins User[]
+  shifts Shift[]
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  createdAt    DateTime @default(now())
+
+  facilityId String?
+  facility   Facility? @relation(fields: [facilityId], references: [id])
+
+  nurseProfile NurseProfile?
+  claims       ShiftClaim[]
+}
+
+model NurseProfile {
+  id             String  @id @default(cuid())
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id])
+  registrationNo String
+  qualifications String
+  bio            String?
+}
+
+model Shift {
+  id                    String      @id @default(cuid())
+  facilityId            String
+  facility              Facility    @relation(fields: [facilityId], references: [id])
+  title                 String
+  ward                  String
+  startsAt              DateTime
+  endsAt                DateTime
+  requiredQualification String
+  hourlyRateCents       Int
+  notes                 String?
+  status                ShiftStatus @default(OPEN)
+  createdAt             DateTime    @default(now())
+
+  claims ShiftClaim[]
+}
+
+model ShiftClaim {
+  id        String      @id @default(cuid())
+  shiftId   String
+  shift     Shift       @relation(fields: [shiftId], references: [id])
+  nurseId   String
+  nurse     User        @relation(fields: [nurseId], references: [id])
+  status    ClaimStatus @default(REQUESTED)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@unique([shiftId, nurseId])
+}
