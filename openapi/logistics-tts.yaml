@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: LogisticsDx Briefing Text-to-Speech
+  description: >
+    Converts the text or HTML body of a LogisticsDx Market Intelligence
+    email (or a stored report date) into spoken-word audio, so a ChatGPT
+    Custom GPT Action or other external automation can attach/deliver an
+    audio version of the briefing without relying on the recipient's
+    device speech synthesis.
+  version: 1.0.0
+servers:
+  - url: https://YOUR-DEPLOYED-DOMAIN
+    description: Replace with the actual deployed origin before importing this into a Custom GPT Action.
+paths:
+  /api/logistics/tts:
+    post:
+      operationId: synthesizeBriefingAudio
+      summary: Synthesize speech audio from email body text/HTML, or a stored report date.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  description: Plain text to synthesize (e.g. the email body).
+                html:
+                  type: string
+                  description: HTML email body; tags are stripped before synthesis. Used only if "text" is omitted.
+                date:
+                  type: string
+                  description: >
+                    "YYYY-MM-DD" or "latest". Used only if neither "text" nor "html" is
+                    given — synthesizes that day's stored LogisticsDx executive summary.
+                voice:
+                  type: string
+                  description: OpenAI TTS voice name (default "alloy").
+                model:
+                  type: string
+                  description: OpenAI TTS model (default "gpt-4o-mini-tts").
+                format:
+                  type: string
+                  enum: [mp3, wav, opus, aac, flac]
+                  default: mp3
+              anyOf:
+                - required: [text]
+                - required: [html]
+                - required: [date]
+      responses:
+        "200":
+          description: Synthesized audio, base64-encoded so it can be attached to an email or saved as a file.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  audioBase64:
+                    type: string
+                  mimeType:
+                    type: string
+                  characters:
+                    type: integer
+        "400":
+          description: Missing/invalid request body.
+        "401":
+          description: Missing or invalid API key.
+        "404":
+          description: No report found for the given date.
+        "502":
+          description: The upstream OpenAI text-to-speech request failed.
+        "503":
+          description: LOGISTICS_TTS_API_KEY is not configured on the server.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-logistics-tts-key
+      description: >
+        Set this to the same value as the server's LOGISTICS_TTS_API_KEY
+        environment variable. In a Custom GPT Action, configure this under
+        Authentication → API Key → Custom Header Name: x-logistics-tts-key.
+security:
+  - apiKeyAuth: []
