@@ -24,3 +24,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* LogisticsDx Market Intelligence — brand tokens, scoped to /intelligence.
+   Additive only: does not touch the ShiftReady color variables above. */
+.logisticsdx {
+  --ldx-black: #0a0a0a;
+  --ldx-charcoal: #1c1c1e;
+  --ldx-white: #ffffff;
+  --ldx-red: #d81f2a;
+  --ldx-grey: #8a8a8e;
+}

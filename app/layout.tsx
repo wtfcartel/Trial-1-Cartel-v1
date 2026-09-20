@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
 import "./globals.css";
@@ -18,15 +19,24 @@ export const metadata: Metadata = {
   description: "A marketplace connecting facilities with relief nurses for last-minute shifts.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const requestHeaders = await headers();
+  const isLogistics = requestHeaders.get("x-ldx-app") === "logistics";
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
-        <Nav />
-        <main className="flex-1">{children}</main>
+        {isLogistics ? (
+          children
+        ) : (
+          <>
+            <Nav />
+            <main className="flex-1">{children}</main>
+          </>
+        )}
       </body>
     </html>
   );

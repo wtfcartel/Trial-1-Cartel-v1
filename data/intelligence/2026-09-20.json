@@ -1,0 +1,521 @@
+{
+  "reportDate": "2026-09-20",
+  "title": "LogisticsDx Market Intelligence",
+  "tagline": "Diagnose. Strategise. Transform.",
+  "generatedAt": "2026-09-20T07:00:00+10:00",
+  "pdfUrl": "/api/logistics/pdf/2026-09-20",
+  "isSampleData": true,
+  "sampleDataNote": "This is a demonstration report used to test the report/PDF/email/web-reader/listening pipeline end to end. Every company, person, address and figure below is fictional. It is not a live intelligence run and must not be treated as verified fact about any real organisation or individual.",
+  "executiveSummary": {
+    "tldr": [
+      "Southern Cross Linehaul confirms a three-year renewal of its east-coast linehaul contract with a major grocery customer, protecting an estimated 40 trailer movements/week.",
+      "Bayview Cold Logistics opens a 6,200 pallet cold-storage expansion at its Laverton North site, adding blast-freezing capacity for the first time.",
+      "Rimfire Transport enters voluntary administration; three regional NSW depots and roughly 60 staff affected, creating near-term customer displacement and a possible property vacancy.",
+      "Kestrel Industrial Partners lodges a planning application for a 28,000 sqm speculative distribution facility at Ravenhall, targeting 3PL and cold-chain occupiers.",
+      "Delta Ridge 3PL (regional Riverina operator) adds a second Griffith depot and a new refrigerated fleet of eight trucks to support citrus-season volume.",
+      "Solstice Automation reports its first WA warehouse robotics deployment, at a mid-market fulfilment operator in Kewdale.",
+      "Nordway Freight Forwarding appoints a new National Operations Manager, signalling a network-review push ahead of a stated FY27 east-coast expansion."
+    ],
+    "namedCompanyMoves": [
+      "Southern Cross Linehaul — three-year grocery linehaul renewal",
+      "Bayview Cold Logistics — Laverton North cold-storage expansion",
+      "Rimfire Transport — voluntary administration, three NSW depots",
+      "Kestrel Industrial Partners — Ravenhall speculative DC planning application"
+    ],
+    "smeSignals": [
+      "Delta Ridge 3PL — second Griffith depot + refrigerated fleet addition",
+      "Coral Bay Customs Brokers — new biosecurity accreditation, Fremantle",
+      "Harborline Container Transport — single new customer win, Port Botany drayage",
+      "Torrens Fulfilment Group — sublease of 1,800 sqm surplus space, Regency Park"
+    ],
+    "priorityWatch": [
+      "Rimfire Transport administration — customer displacement and possible depot vacancy in regional NSW",
+      "Kestrel Industrial Partners Ravenhall DA — outcome expected within the quarter",
+      "Nordway Freight Forwarding network review following new National Operations Manager appointment",
+      "Bayview Cold Logistics — whether new blast-freezing capacity draws a large protein/FMCG anchor tenant"
+    ]
+  },
+  "property": [
+    {
+      "id": "prop-001",
+      "company": "Bayview Cold Logistics",
+      "headline": "Bayview Cold Logistics opens 6,200-pallet blast-freezing expansion, Laverton North",
+      "tldr": "New cold-storage wing adds blast-freezing to an existing ambient/chilled site.",
+      "observation": "Facility expansion completed at the company's existing Laverton North site; capacity increase confirmed via company statement.",
+      "logisticsDxView": "First blast-freezing capability in the group's network — likely aimed at winning protein or seafood import volume rather than existing chilled customers.",
+      "commercialTrigger": "New capacity typically needs a utilisation and network-fit review within 3–6 months of opening.",
+      "whatToWatchNext": "Whether an anchor tenant or new customer contract is announced for the expansion within the quarter.",
+      "confidence": "SUPPORTED CONCLUSION",
+      "timeHorizon": "NEAR",
+      "sources": [{ "label": "Company statement, 18/09/2026" }],
+      "narrationText": "In Laverton North, Bayview Cold Logistics has opened a six thousand two hundred pallet expansion with the group's first blast-freezing capability. LogisticsDx reads this as a play for new protein or seafood import volume rather than simply growing existing chilled business. The one to watch is whether an anchor customer is announced for the new space within the quarter.",
+      "address": "14 Cold Chain Drive",
+      "suburb": "Laverton North",
+      "state": "VIC",
+      "owner": "Bayview Cold Logistics (owner-occupier)",
+      "areaSqm": "9,400 sqm (new wing)",
+      "palletCapacity": "6,200 pallets (blast-freeze + chilled)",
+      "matchType": "DIRECT MATCH"
+    },
+    {
+      "id": "prop-002",
+      "company": "Kestrel Industrial Partners",
+      "headline": "Kestrel Industrial Partners lodges DA for 28,000 sqm speculative DC, Ravenhall",
+      "tldr": "Speculative distribution centre proposed on vacant industrial land, targeting 3PL and cold-chain occupiers.",
+      "observation": "Development application lodged with the relevant council; no anchor tenant disclosed.",
+      "logisticsDxView": "Positioned to catch overflow demand from operators outgrowing older Western Melbourne sites.",
+      "commercialTrigger": "Speculative developments without a pre-commitment typically create an occupier-introduction window 6–12 months before completion.",
+      "whatToWatchNext": "Planning approval decision and any pre-lease announcement.",
+      "confidence": "HIGH-CONFIDENCE INFERENCE — NOT VERIFIED",
+      "timeHorizon": "MEDIUM",
+      "sources": [{ "label": "Council planning portal listing, 15/09/2026" }],
+      "narrationText": "Turning to the property pipeline, Kestrel Industrial Partners has lodged a planning application for a twenty-eight thousand square metre speculative distribution centre at Ravenhall, aimed at third-party logistics and cold-chain occupiers with no anchor tenant yet disclosed. This is exactly the kind of speculative build that opens an occupier-introduction window well before completion.",
+      "suburb": "Ravenhall",
+      "state": "VIC",
+      "developer": "Kestrel Industrial Partners",
+      "areaSqm": "28,000 sqm (proposed)",
+      "matchType": "POTENTIAL MATCH — ASSUMPTION"
+    },
+    {
+      "id": "prop-003",
+      "company": "Torrens Fulfilment Group",
+      "headline": "Torrens Fulfilment Group subleases 1,800 sqm surplus space, Regency Park",
+      "tldr": "Small ecommerce fulfilment operator subleases part of its Regency Park facility after a customer contract ended.",
+      "observation": "Sublease listing identified via commercial agent; former occupier confirmed as Torrens Fulfilment Group.",
+      "logisticsDxView": "Likely a right-sizing move rather than distress — company remains active and trading.",
+      "commercialTrigger": "Surplus space typically signals near-term appetite for a network or cost-to-serve review.",
+      "whatToWatchNext": "Whether the space is taken up and whether Torrens backfills the lost customer volume.",
+      "confidence": "REASONED ASSUMPTION — NOT VERIFIED",
+      "timeHorizon": "IMMEDIATE",
+      "sources": [{ "label": "Commercial property agent listing, 17/09/2026" }],
+      "narrationText": "In Adelaide's north, ecommerce fulfilment operator Torrens Fulfilment Group has subleased eighteen hundred square metres of surplus space at Regency Park after a customer contract ended. LogisticsDx reads this as right-sizing rather than distress, since the business remains actively trading.",
+      "address": "Part of 22 Regency Road",
+      "suburb": "Regency Park",
+      "state": "SA",
+      "areaSqm": "1,800 sqm (sublease)",
+      "matchType": "POTENTIAL MATCH — ASSUMPTION"
+    }
+  ],
+  "logistics": {
+    "majorEvents": [
+      {
+        "id": "log-001",
+        "company": "Southern Cross Linehaul",
+        "headline": "Southern Cross Linehaul renews east-coast grocery linehaul contract, three years",
+        "tldr": "Existing grocery customer renews its Melbourne–Sydney–Brisbane linehaul contract for a further three years.",
+        "observation": "Renewal confirmed by both parties; incumbent retained, no change of scope disclosed.",
+        "logisticsDxView": "Contract retention reduces near-term churn risk but locks in existing rates during a period of rising diesel costs.",
+        "commercialTrigger": "Multi-year renewals under cost pressure are a common trigger for a network or fuel-surcharge review.",
+        "whatToWatchNext": "Any surcharge renegotiation or additional lane awards over the contract term.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "NEAR",
+        "sources": [{ "label": "Joint customer/carrier statement, 19/09/2026" }],
+        "narrationText": "In transport and logistics, Southern Cross Linehaul has renewed its east-coast grocery linehaul contract for a further three years, protecting an estimated forty trailer movements a week on the Melbourne, Sydney and Brisbane corridor. The renewal locks in existing rates through a period of rising diesel costs, which makes a fuel-surcharge renegotiation the thing worth watching over the contract term."
+      },
+      {
+        "id": "log-002",
+        "company": "Rimfire Transport",
+        "headline": "Rimfire Transport enters voluntary administration",
+        "tldr": "Regional NSW road transport operator appoints administrators; three depots and roughly 60 staff affected.",
+        "observation": "Voluntary administration confirmed via public notice; trading continuing under administrator control at the time of writing.",
+        "logisticsDxView": "Creates near-term customer displacement risk across the operator's regional NSW freight lanes.",
+        "commercialTrigger": "Administration events routinely create both a turnaround-advisory opportunity and a customer-displacement opportunity for competitors.",
+        "whatToWatchNext": "Administrators' first report to creditors and whether any depots are sold as going concerns.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "IMMEDIATE",
+        "sources": [{ "label": "Public insolvency notice, 19/09/2026" }],
+        "narrationText": "The most significant risk item today is Rimfire Transport, a regional New South Wales road transport operator that has entered voluntary administration, affecting three depots and roughly sixty staff. Filing for administration is a procedural event, not proof of insolvency, but it does create real near-term customer-displacement risk across the operator's regional freight lanes. Worth watching next is the administrators' first report to creditors and whether any of the three depots are sold as going concerns."
+      },
+      {
+        "id": "log-003",
+        "company": "Nordway Freight Forwarding",
+        "headline": "Nordway Freight Forwarding appoints new National Operations Manager",
+        "tldr": "New senior operations hire joins ahead of a stated east-coast network expansion.",
+        "observation": "Appointment confirmed via company announcement; effective start date published.",
+        "logisticsDxView": "Consistent with a network-review or expansion push, though appointment alone does not confirm strategy.",
+        "commercialTrigger": "New senior operational hires often precede a broader network or technology review.",
+        "whatToWatchNext": "Any announced new branch, lane or facility over the next two quarters.",
+        "confidence": "REASONED ASSUMPTION — NOT VERIFIED",
+        "timeHorizon": "NEAR",
+        "sources": [{ "label": "Company announcement, 16/09/2026" }],
+        "narrationText": "Freight forwarder Nordway Freight Forwarding has appointed a new National Operations Manager ahead of a stated east-coast network expansion. An appointment alone doesn't confirm strategy, but it's consistent with a network review, and it's worth watching for any new branch, lane or facility announcement over the next two quarters."
+      },
+      {
+        "id": "log-004",
+        "company": "Harborline Container Transport",
+        "headline": "Harborline Container Transport wins new Port Botany drayage customer",
+        "tldr": "Small container transport operator adds a single new import customer for Port Botany drayage.",
+        "observation": "Customer win confirmed via a public customer testimonial and matching job advertisements for additional drivers.",
+        "logisticsDxView": "A single contract win at this scale is a genuine actionable signal even though it is smaller than the major-event items above.",
+        "commercialTrigger": "New volume without matching fleet growth often creates near-term capacity or driver-recruitment pressure.",
+        "whatToWatchNext": "Whether Harborline advertises further driver or yard-capacity roles in the next month.",
+        "confidence": "HIGH-CONFIDENCE INFERENCE — NOT VERIFIED",
+        "timeHorizon": "IMMEDIATE",
+        "sources": [{ "label": "Public customer testimonial and job listing, 18/09/2026" }],
+        "narrationText": "A smaller but genuinely actionable item: Harborline Container Transport has won a new import customer for Port Botany drayage. New volume without matching fleet growth tends to create near-term driver and yard-capacity pressure, so further recruitment activity in the next month is the signal to watch."
+      }
+    ],
+    "smeMoves": [
+      {
+        "id": "sme-001",
+        "company": "Delta Ridge 3PL",
+        "headline": "Delta Ridge 3PL opens second Griffith depot with refrigerated fleet addition",
+        "tldr": "Riverina contract logistics operator opens a second depot and adds eight refrigerated trucks ahead of citrus season.",
+        "observation": "New depot and fleet addition confirmed via regional business media.",
+        "logisticsDxView": "Classic pre-season capacity build for a regional operator; growth is seasonal and demand-led rather than speculative.",
+        "opportunity": "Fleet-utilisation review once the citrus season peak passes, to check whether the new trucks are retained year-round.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "IMMEDIATE",
+        "sizeDescriptor": "PRIVATE / SIZE NOT VERIFIED",
+        "state": "NSW",
+        "sources": [{ "label": "Regional business media, 17/09/2026" }],
+        "narrationText": "Turning to the SME and mid-market segment, Riverina operator Delta Ridge 3PL has opened a second depot in Griffith and added eight refrigerated trucks ahead of the citrus season. This reads as classic pre-season capacity building rather than a speculative bet, and the opportunity worth flagging is a fleet-utilisation review once the seasonal peak passes."
+      },
+      {
+        "id": "sme-002",
+        "company": "Coral Bay Customs Brokers",
+        "headline": "Coral Bay Customs Brokers gains new biosecurity accreditation, Fremantle",
+        "tldr": "Small Fremantle customs brokerage adds a biosecurity handling accreditation.",
+        "observation": "Accreditation confirmed via the issuing body's public register.",
+        "logisticsDxView": "Expands the addressable freight types the brokerage can legally clear, a low-cost capability upgrade.",
+        "opportunity": "Potential introduction to importers needing biosecurity-cleared customs handling in WA.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "NEAR",
+        "sizeDescriptor": "PRIVATE / SIZE NOT VERIFIED",
+        "state": "WA",
+        "sources": [{ "label": "Public accreditation register, 16/09/2026" }],
+        "narrationText": "In Fremantle, Coral Bay Customs Brokers has gained a new biosecurity handling accreditation, a small but real capability upgrade that widens the freight types the business can legally clear."
+      },
+      {
+        "id": "sme-003",
+        "company": "Solstice Automation",
+        "headline": "Solstice Automation completes first WA warehouse robotics deployment, Kewdale",
+        "tldr": "Automation vendor deploys goods-to-person robotics at a mid-market fulfilment operator in Kewdale.",
+        "observation": "Deployment confirmed via vendor case study naming the customer.",
+        "logisticsDxView": "A reference deployment like this is usually followed by a vendor sales push into similar mid-market fulfilment operators.",
+        "opportunity": "Automation/productivity diagnostic for comparable WA fulfilment operators evaluating similar technology.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "NEAR",
+        "sizeDescriptor": "PRIVATE / SIZE NOT VERIFIED",
+        "state": "WA",
+        "sources": [{ "label": "Vendor case study, 15/09/2026" }],
+        "narrationText": "Automation vendor Solstice Automation has completed its first Western Australian warehouse robotics deployment, at a mid-market fulfilment operator in Kewdale. Reference deployments like this are usually followed by a wider sales push into comparable mid-market operators, which is where an automation diagnostic could be timely."
+      },
+      {
+        "id": "sme-004",
+        "company": "Torrens Fulfilment Group",
+        "headline": "Torrens Fulfilment Group surplus space follows contract change",
+        "tldr": "See property section — surplus Regency Park space follows the end of a customer contract.",
+        "observation": "Cross-referenced from the property sublease listing.",
+        "logisticsDxView": "Right-sizing rather than distress; still trading.",
+        "opportunity": "Cost-to-serve review while the business rebalances capacity.",
+        "confidence": "REASONED ASSUMPTION — NOT VERIFIED",
+        "timeHorizon": "IMMEDIATE",
+        "sizeDescriptor": "PRIVATE / SIZE NOT VERIFIED",
+        "state": "SA",
+        "sources": [{ "label": "Commercial property agent listing, 17/09/2026" }],
+        "narrationText": "And in Adelaide, the Torrens Fulfilment Group sublease mentioned earlier in the property segment looks like right-sizing after a contract change rather than distress, since the business is still actively trading."
+      }
+    ]
+  },
+  "supplyChain": [
+    {
+      "id": "sc-001",
+      "headline": "East-coast diesel price rise flows through to linehaul surcharges",
+      "tldr": "A sustained rise in diesel prices over the past month is prompting several east-coast carriers to lift fuel surcharges.",
+      "observation": "Surcharge increases confirmed via two carrier rate notices; broader diesel price movement is publicly quoted fuel-price data.",
+      "logisticsDxView": "Transmission is direct: diesel price to bunker/fuel cost to carrier surcharge to customer transport cost.",
+      "commercialTrigger": "Shippers facing surcharge increases are a natural audience for a freight cost-to-serve review.",
+      "confidence": "SUPPORTED CONCLUSION",
+      "timeHorizon": "IMMEDIATE",
+      "sources": [{ "label": "Carrier rate notices, 15–18/09/2026" }],
+      "narrationText": "Looking at supply-chain pressures, a sustained rise in diesel prices over the past month is now flowing through to linehaul fuel surcharges from several east-coast carriers. The transmission here is direct — diesel cost to carrier surcharge to customer transport cost — and it makes this a reasonable moment for affected shippers to run a freight cost-to-serve review."
+    },
+    {
+      "id": "sc-002",
+      "headline": "Port Botany congestion adds one to two days to import dwell times",
+      "tldr": "Vessel bunching at Port Botany has extended container dwell times over the past week.",
+      "observation": "Dwell-time increase reported by two container transport operators serving the port.",
+      "logisticsDxView": "Short-term congestion event rather than a structural shift; likely to ease within weeks.",
+      "commercialTrigger": "Extended dwell times increase demurrage risk for importers without buffer capacity.",
+      "confidence": "HIGH-CONFIDENCE INFERENCE — NOT VERIFIED",
+      "timeHorizon": "IMMEDIATE",
+      "sources": [{ "label": "Container transport operator reports, 18/09/2026" }],
+      "narrationText": "At Port Botany, vessel bunching has added one to two days to import container dwell times over the past week. This looks like short-term congestion rather than a structural shift, but it does raise demurrage risk for importers without spare buffer capacity in the meantime."
+    },
+    {
+      "id": "sc-003",
+      "headline": "Regional NSW road freight capacity tightens after Rimfire Transport administration",
+      "tldr": "Displaced freight from Rimfire Transport's three depots is adding short-term pressure to regional NSW road capacity.",
+      "observation": "Capacity tightening reported anecdotally by two competing regional carriers; not independently verified beyond those reports.",
+      "logisticsDxView": "Direct knock-on effect of the administration event covered in the logistics section.",
+      "commercialTrigger": "Competing regional carriers may have a short window to pick up displaced volume.",
+      "confidence": "REASONED ASSUMPTION — NOT VERIFIED",
+      "timeHorizon": "IMMEDIATE",
+      "sources": [{ "label": "Competitor carrier reports, 19/09/2026" }],
+      "narrationText": "And regional New South Wales road freight capacity is tightening in the short term as competing carriers absorb volume displaced by the Rimfire Transport administration — a direct knock-on from that event, and a short window for competing regional operators to pick up the displaced freight."
+    }
+  ],
+  "industry": {
+    "people": [
+      {
+        "id": "ppl-001",
+        "person": "Priya Ashworth",
+        "fromCompany": "Meridian Supply Chain Group",
+        "fromRole": "State Manager, VIC",
+        "toCompany": "Nordway Freight Forwarding",
+        "toRole": "National Operations Manager",
+        "movementType": "NEW HIRE",
+        "effectiveDate": "2026-09-16",
+        "state": "VIC",
+        "logisticsDxView": "Consistent with a network-review or expansion push, though appointment alone does not establish strategy.",
+        "confidence": "HIGH-CONFIDENCE INFERENCE — NOT VERIFIED",
+        "sources": [{ "label": "Company announcement, 16/09/2026" }],
+        "narrationText": "Turning to senior personnel movements: Priya Ashworth has joined Nordway Freight Forwarding as National Operations Manager, moving from a state manager role at Meridian Supply Chain Group. LogisticsDx reads this as a plausible signal of a network review, though an appointment on its own doesn't establish strategy."
+      },
+      {
+        "id": "ppl-002",
+        "person": "Callum Whitmore",
+        "fromCompany": "Delta Ridge 3PL",
+        "fromRole": "Operations Supervisor",
+        "toCompany": "Delta Ridge 3PL",
+        "toRole": "Griffith Depot Manager",
+        "movementType": "PROMOTION",
+        "effectiveDate": "2026-09-14",
+        "state": "NSW",
+        "logisticsDxView": "Internal promotion into the newly opened second depot — succession from within rather than an external hire.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "sources": [{ "label": "Regional business media, 17/09/2026" }],
+        "narrationText": "At Delta Ridge 3PL, Callum Whitmore has been promoted from operations supervisor to depot manager for the newly opened second Griffith site — an internal promotion rather than an external hire."
+      },
+      {
+        "id": "ppl-003",
+        "person": "Nadia Okafor",
+        "fromCompany": "Rimfire Transport",
+        "fromRole": "Chief Financial Officer",
+        "toCompany": "Rimfire Transport",
+        "toRole": "Chief Financial Officer",
+        "movementType": "DEPARTURE",
+        "effectiveDate": "2026-09-19",
+        "state": "NSW",
+        "logisticsDxView": "Departure disclosed alongside the administration announcement; no reason for departure is stated or inferred.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "sources": [{ "label": "Public insolvency notice, 19/09/2026" }],
+        "narrationText": "And Nadia Okafor has departed as Chief Financial Officer of Rimfire Transport, disclosed alongside the administration announcement. No reason for the departure is stated, and none should be assumed."
+      }
+    ],
+    "technology": [
+      {
+        "id": "tech-001",
+        "company": "Solstice Automation",
+        "headline": "Solstice Automation's Kewdale deployment — see SME signals",
+        "tldr": "Cross-referenced from the SME section; first WA robotics reference site.",
+        "confidence": "SUPPORTED CONCLUSION",
+        "timeHorizon": "NEAR",
+        "sources": [{ "label": "Vendor case study, 15/09/2026" }],
+        "narrationText": "On technology, the Solstice Automation robotics deployment mentioned earlier is the vendor's first Western Australian reference site and is likely to anchor a wider sales push into similar mid-market fulfilment operators."
+      },
+      {
+        "id": "tech-002",
+        "headline": "WMS vendor case study points to broader mid-market adoption",
+        "tldr": "A warehouse-management-system vendor publishes a case study with an unnamed mid-market 3PL customer showing a measured productivity gain.",
+        "observation": "Case study is vendor-published and names only 'a Victorian 3PL'; customer identity not disclosed.",
+        "logisticsDxView": "Directionally useful as a market signal, but the customer is UNDISCLOSED OCCUPIER-equivalent and the productivity figure is the vendor's own estimate.",
+        "confidence": "SCENARIO — DEPENDS ON",
+        "timeHorizon": "MEDIUM",
+        "sources": [{ "label": "Vendor case study, 14/09/2026" }],
+        "narrationText": "A warehouse management system vendor has also published a case study, with an unnamed Victorian third-party logistics customer, showing a measured productivity gain. The customer isn't named and the figure is the vendor's own estimate, so this is a directional market signal rather than a verified result."
+      }
+    ],
+    "other": [
+      {
+        "id": "oth-001",
+        "headline": "Freight and Trade Alliance flags proposed biosecurity fee changes",
+        "tldr": "Industry body raises member concerns about proposed changes to biosecurity inspection fees.",
+        "observation": "Concern raised via published member update; no final fee schedule confirmed.",
+        "logisticsDxView": "Early-stage regulatory signal; final impact depends on the fee schedule ultimately adopted.",
+        "confidence": "SCENARIO — DEPENDS ON",
+        "timeHorizon": "MEDIUM",
+        "sources": [{ "label": "Industry body member update, 17/09/2026" }],
+        "narrationText": "From a policy perspective, an industry body has flagged member concerns about proposed changes to biosecurity inspection fees. No final fee schedule has been confirmed, so this is one to track rather than act on yet."
+      },
+      {
+        "id": "oth-002",
+        "headline": "Sentiment among regional NSW carriers turns cautious after Rimfire administration",
+        "tldr": "Anecdotal sentiment among competing regional carriers has turned more cautious following the Rimfire Transport administration.",
+        "observation": "Sentiment drawn from public professional commentary; not independently verified.",
+        "logisticsDxView": "Soft sentiment, included for completeness — should not be read as hard evidence of a wider regional downturn.",
+        "confidence": "INSUFFICIENT EVIDENCE",
+        "timeHorizon": "IMMEDIATE",
+        "sources": [{ "label": "Public professional commentary, 19/09/2026" }],
+        "narrationText": "Sentiment among competing regional New South Wales carriers has turned more cautious following the Rimfire Transport administration. This is soft, unverified sentiment rather than hard evidence of a wider downturn, and we're flagging it as exactly that."
+      }
+    ],
+    "sentiment": {
+      "logistics": "stable/mixed",
+      "property": "improving",
+      "distress": "deteriorating",
+      "tendersAndContracts": "stable/mixed"
+    }
+  },
+  "opportunities": [
+    {
+      "id": "opp-001",
+      "company": "Rimfire Transport",
+      "trigger": "Voluntary administration creating customer and depot displacement",
+      "action": "Turnaround/administration advisory outreach; property introduction for any depots sold as going concerns",
+      "priority": "HIGH",
+      "narrationText": "The highest-priority action today is around Rimfire Transport's administration — both a turnaround-advisory angle and a property introduction if any of the three depots are sold as going concerns."
+    },
+    {
+      "id": "opp-002",
+      "company": "Bayview Cold Logistics",
+      "trigger": "New blast-freezing capacity without a disclosed anchor tenant",
+      "action": "Introduce protein/seafood importers seeking blast-freeze capacity",
+      "priority": "MEDIUM-HIGH",
+      "narrationText": "Next, Bayview Cold Logistics' new blast-freezing capacity has no disclosed anchor tenant yet, making an importer introduction a timely medium-to-high priority action."
+    },
+    {
+      "id": "opp-003",
+      "company": "Nordway Freight Forwarding",
+      "trigger": "New National Operations Manager ahead of a stated network expansion",
+      "action": "Network/technology diagnostic outreach timed to the stated expansion",
+      "priority": "MEDIUM-HIGH",
+      "narrationText": "Nordway Freight Forwarding's new operations leader, arriving ahead of a stated expansion, is a good moment for a timed network or technology diagnostic conversation."
+    },
+    {
+      "id": "opp-004",
+      "company": "Torrens Fulfilment Group",
+      "trigger": "Surplus space and a lost customer contract",
+      "action": "Cost-to-serve and network review outreach",
+      "priority": "MEDIUM",
+      "narrationText": "And Torrens Fulfilment Group's surplus space following a lost contract is a lower-urgency but still worthwhile cost-to-serve conversation."
+    }
+  ],
+  "watchlist": [
+    {
+      "id": "wl-001",
+      "category": "Financial",
+      "subject": "Rimfire Transport",
+      "whatChanged": "Entered voluntary administration; three NSW depots affected",
+      "evidenceLevel": "SUPPORTED CONCLUSION",
+      "confirms": "Administrators' first creditors' report",
+      "refutes": "A trading update showing the business exiting administration",
+      "nextEvent": "First creditors' meeting",
+      "narrationText": "On the watchlist: Rimfire Transport's administration, where the next observable event is the first creditors' meeting."
+    },
+    {
+      "id": "wl-002",
+      "category": "Property",
+      "subject": "Kestrel Industrial Partners — Ravenhall DC",
+      "whatChanged": "Planning application lodged for a 28,000 sqm speculative facility",
+      "evidenceLevel": "HIGH-CONFIDENCE INFERENCE — NOT VERIFIED",
+      "confirms": "Council approval notice",
+      "refutes": "Application withdrawal or rejection",
+      "nextEvent": "Council planning decision",
+      "narrationText": "Also watching the Kestrel Industrial Partners Ravenhall development, where the next event is the council's planning decision."
+    },
+    {
+      "id": "wl-003",
+      "category": "Company",
+      "subject": "Bayview Cold Logistics",
+      "whatChanged": "New blast-freezing capacity opened without a disclosed anchor tenant",
+      "evidenceLevel": "SUPPORTED CONCLUSION",
+      "confirms": "An announced anchor-tenant contract",
+      "nextEvent": "Any customer announcement for the new wing",
+      "narrationText": "And Bayview Cold Logistics' new capacity, where we're watching for any anchor-tenant announcement."
+    },
+    {
+      "id": "wl-004",
+      "category": "People",
+      "subject": "Nordway Freight Forwarding",
+      "whatChanged": "New National Operations Manager appointed ahead of a stated expansion",
+      "evidenceLevel": "REASONED ASSUMPTION — NOT VERIFIED",
+      "confirms": "An announced new branch, lane or facility",
+      "nextEvent": "Any network announcement in the next two quarters",
+      "narrationText": "Finally, Nordway Freight Forwarding's leadership change, where we're watching for a concrete network announcement over the next two quarters."
+    }
+  ],
+  "narration": {
+    "intro": [
+      "Good morning. This is the LogisticsDx Market Intelligence briefing for 20 September 2026. Here's what matters across Australian logistics, supply chain and industrial property today.",
+      "A quick note before we start: today's briefing is a demonstration run using fictional companies and people to test the listening feature end to end. It is not live market intelligence."
+    ],
+    "sections": [
+      {
+        "id": "exec-tldr",
+        "title": "Executive TL;DR",
+        "paragraphs": [
+          "Seven items matter most today. Southern Cross Linehaul has renewed a major east-coast grocery linehaul contract for three years. Bayview Cold Logistics has opened a new blast-freezing expansion in Laverton North. Rimfire Transport has entered voluntary administration, affecting three regional New South Wales depots. Kestrel Industrial Partners has lodged a planning application for a speculative distribution centre at Ravenhall. Delta Ridge 3PL has opened a second Griffith depot with a new refrigerated fleet. Solstice Automation has completed its first Western Australian warehouse robotics deployment. And Nordway Freight Forwarding has appointed a new National Operations Manager ahead of a stated network expansion."
+        ]
+      },
+      {
+        "id": "major-moves",
+        "title": "Major Company Moves",
+        "paragraphs": [
+          "Southern Cross Linehaul has renewed its east-coast grocery linehaul contract for a further three years, protecting an estimated forty trailer movements a week. The renewal locks in existing rates through a period of rising diesel costs, so a surcharge renegotiation is the thing worth watching.",
+          "The most significant risk item today is Rimfire Transport, a regional New South Wales road transport operator that has entered voluntary administration, affecting three depots and roughly sixty staff. This is a procedural filing, not proof of insolvency, but it does create near-term customer-displacement risk. Worth watching next is the administrators' first report to creditors."
+        ]
+      },
+      {
+        "id": "sme-signals",
+        "title": "SME and Mid-Market Signals",
+        "paragraphs": [
+          "Turning to the SME and mid-market segment: Riverina operator Delta Ridge 3PL has opened a second depot in Griffith and added eight refrigerated trucks ahead of the citrus season — classic pre-season capacity building. In Fremantle, Coral Bay Customs Brokers has gained a new biosecurity handling accreditation. And automation vendor Solstice Automation has completed its first Western Australian robotics deployment, at a mid-market fulfilment operator in Kewdale."
+        ]
+      },
+      {
+        "id": "property",
+        "title": "Property Intelligence",
+        "paragraphs": [
+          "On the property side, Bayview Cold Logistics has opened a six thousand two hundred pallet blast-freezing expansion in Laverton North with no anchor tenant yet disclosed for the new capacity. Kestrel Industrial Partners has lodged a planning application for a twenty-eight thousand square metre speculative distribution centre at Ravenhall. And in Adelaide, Torrens Fulfilment Group has subleased surplus space at Regency Park after a customer contract ended — read as right-sizing rather than distress."
+        ]
+      },
+      {
+        "id": "logistics-overview",
+        "title": "Logistics Overview",
+        "paragraphs": [
+          "In transport and logistics more broadly, Harborline Container Transport has won a new import customer for Port Botany drayage, which is worth watching for follow-on driver recruitment activity given the new volume."
+        ]
+      },
+      {
+        "id": "supply-chain",
+        "title": "Supply Chain Challenges",
+        "paragraphs": [
+          "Looking at supply-chain pressures: a sustained rise in diesel prices is flowing through to linehaul fuel surcharges from several east-coast carriers. Port Botany is seeing one to two extra days of import dwell time from vessel bunching, which looks like short-term congestion rather than a structural shift. And regional New South Wales road freight capacity is tightening in the short term as competing carriers absorb volume displaced by the Rimfire Transport administration."
+        ]
+      },
+      {
+        "id": "people",
+        "title": "People and Key Staff Movements",
+        "paragraphs": [
+          "Turning to senior personnel movements: Priya Ashworth has joined Nordway Freight Forwarding as National Operations Manager, moving from a state manager role at Meridian Supply Chain Group — a plausible signal of a network review, though appointment alone doesn't establish strategy. At Delta Ridge 3PL, Callum Whitmore has been promoted to depot manager for the new Griffith site. And Nadia Okafor has departed as Chief Financial Officer of Rimfire Transport, disclosed alongside the administration announcement, with no reason for the departure stated or assumed."
+        ]
+      },
+      {
+        "id": "broad-industry",
+        "title": "Broad Industry Intelligence",
+        "paragraphs": [
+          "More broadly, an industry body has flagged member concerns about proposed changes to biosecurity inspection fees, though no final fee schedule is confirmed yet. And sentiment among competing regional New South Wales carriers has turned more cautious following the Rimfire Transport administration — soft, unverified sentiment, flagged as such."
+        ]
+      },
+      {
+        "id": "opportunities",
+        "title": "Commercial Opportunities",
+        "paragraphs": [
+          "From a LogisticsDx commercial perspective, the highest-priority action today is around Rimfire Transport's administration — both a turnaround-advisory angle and a property introduction if any depots are sold as going concerns. Bayview Cold Logistics' new blast-freezing capacity, with no anchor tenant yet, is a good importer-introduction opportunity. And Nordway Freight Forwarding's new operations leader is a well-timed moment for a network or technology diagnostic conversation."
+        ]
+      },
+      {
+        "id": "watchlist",
+        "title": "Watchlist",
+        "paragraphs": [
+          "Finally, here are the priority items we're watching: Rimfire Transport's administration through to the first creditors' meeting; the Kestrel Industrial Partners Ravenhall development through to the council's planning decision; Bayview Cold Logistics for any anchor-tenant announcement; and Nordway Freight Forwarding for a concrete network announcement over the next two quarters."
+        ]
+      }
+    ],
+    "outro": [
+      "That's today's LogisticsDx Market Intelligence briefing. For the underlying analysis, source material or deeper investigation into any company or opportunity discussed today, contact LogisticsDx."
+    ]
+  }
+}
