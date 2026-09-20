@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getReportByDate } from "@/lib/logistics/reports";
-import { loadSendBriefingEmailConfigFromEnv, sendBriefingEmail } from "@/lib/logistics/send-briefing-email";
+import { loadSendEmailConfigFromEnv, sendBriefingEmail } from "@/lib/logistics/send-email";
 
 export const runtime = "nodejs";
 
@@ -17,9 +17,9 @@ export const runtime = "nodejs";
  *   1. Load and sanity-check the day's report.
  *   2. Confirm the web reader can already serve it at /intelligence/<date>
  *      (no action needed — it reads the same file).
- *   3. Optionally send the Microsoft 365 briefing email with the dated
- *      Listen/PDF/Read links, if LOGISTICS_SEND_EMAIL=true and Microsoft
- *      365 + recipient env vars are configured.
+ *   3. Optionally send the briefing email with the dated Listen/PDF/Read
+ *      links via Resend or SMTP, if LOGISTICS_SEND_EMAIL=true and a
+ *      provider + recipient env vars are configured.
  *
  * Intended trigger: an external scheduler (e.g. Vercel Cron, or any cron
  * that can call an HTTPS endpoint) hitting this route at 07:00
@@ -56,6 +56,7 @@ export async function POST(request: Request) {
     webPublished: true;
     pdfUrl: string | undefined;
     emailSent: boolean;
+    emailProvider?: "resend" | "smtp";
     emailError?: string;
   } = {
     date: targetDate,
@@ -70,12 +71,13 @@ export async function POST(request: Request) {
       .map((s) => s.trim())
       .filter(Boolean);
     try {
-      const config = loadSendBriefingEmailConfigFromEnv(recipients);
-      await sendBriefingEmail(report, config);
+      const config = loadSendEmailConfigFromEnv(recipients);
+      const { provider } = await sendBriefingEmail(report, config);
       result.emailSent = true;
+      result.emailProvider = provider;
     } catch (err) {
-      // Per spec: never silently fall back to another provider — report the failure
-      // and keep the already-published web report + PDF intact.
+      // Never silently fall back to a provider you didn't configure — report
+      // the failure and keep the already-published web report + PDF intact.
       result.emailError = err instanceof Error ? err.message : String(err);
     }
   }
