@@ -1,0 +1,194 @@
+<!doctype html>
+<!--
+  Standalone phone text-to-speech reader — no build step, no dependencies.
+
+  This is a plain webpage, not an email. Paste this whole file's contents
+  wherever you need a one-off "read this aloud" page: save it as an .html
+  file and open it in a phone browser, or have a Custom GPT fill in
+  EMAIL_BODY below and hand back the finished file per email. It cannot
+  be pasted into the email body itself — Gmail/Outlook/Apple Mail all
+  strip <script> tags from email HTML for security, so no JavaScript
+  runs inside an actual email. Opening it as its own page is what lets
+  window.speechSynthesis (the phone's own TTS engine) work at all.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Read Aloud</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    font-family: -apple-system, Roboto, Arial, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 18px; letter-spacing: 1px; margin: 0 0 4px; }
+  .subtitle { color: #d81f2a; font-size: 12px; font-weight: bold; letter-spacing: 2px; margin-bottom: 24px; }
+  .player { background: #1c1c1e; border-radius: 10px; padding: 16px; }
+  .controls { display: flex; justify-content: center; gap: 12px; margin: 16px 0; }
+  button {
+    min-height: 44px;
+    min-width: 44px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 15px;
+    padding: 0 16px;
+    cursor: pointer;
+  }
+  button:active { background: rgba(255,255,255,0.2); }
+  #playBtn { background: #d81f2a; font-size: 20px; min-width: 56px; min-height: 56px; }
+  .rates { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .rates button[aria-pressed="true"] { background: #fff; color: #0a0a0a; }
+  #status { text-align: center; font-size: 13px; color: rgba(255,255,255,0.6); min-height: 18px; margin-top: 8px; }
+  #body { white-space: pre-wrap; line-height: 1.6; font-size: 15px; margin-top: 24px; color: rgba(255,255,255,0.85); }
+  #fallback { display: none; background: #1c1c1e; border-radius: 10px; padding: 16px; font-size: 14px; color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+<main>
+  <h1>LOGISTICSDX</h1>
+  <div class="subtitle">READ ALOUD</div>
+
+  <div id="player" class="player">
+    <div class="controls">
+      <button id="prevBtn" aria-label="Rewind to start">⏮</button>
+      <button id="playBtn" aria-label="Play">▶</button>
+      <button id="stopBtn" aria-label="Stop">⏹</button>
+    </div>
+    <div class="rates" id="rates"></div>
+    <div id="status">Ready</div>
+  </div>
+
+  <div id="fallback">
+    Audio playback isn't supported by this browser. You can still read the full briefing below.
+  </div>
+
+  <div id="body"></div>
+</main>
+
+<script>
+  // ---- Paste the email body (plain text) between the backticks below. ----
+  const EMAIL_BODY = `Good morning. This is the LogisticsDx Market Intelligence briefing.
+
+Replace this placeholder with the actual email text — the TL;DR, the
+named company moves, whatever you want read aloud. Plain text works
+best; if you're starting from HTML, strip the tags first.`;
+  // --------------------------------------------------------------------
+
+  const RATES = [1.0, 1.25, 1.5, 1.75, 2.0];
+  const statusEl = document.getElementById("status");
+  const playBtn = document.getElementById("playBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const stopBtn = document.getElementById("stopBtn");
+  const ratesEl = document.getElementById("rates");
+  const bodyEl = document.getElementById("body");
+  const playerEl = document.getElementById("player");
+  const fallbackEl = document.getElementById("fallback");
+
+  bodyEl.textContent = EMAIL_BODY;
+
+  const supported = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+  if (!supported) {
+    playerEl.style.display = "none";
+    fallbackEl.style.display = "block";
+  } else {
+    let rate = 1.0;
+    let utterance = null;
+    let state = "idle"; // idle | speaking | paused
+
+    function pickVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      return (
+        voices.find((v) => /^en-AU/i.test(v.lang)) ||
+        voices.find((v) => /^en-GB/i.test(v.lang)) ||
+        voices.find((v) => /^en/i.test(v.lang)) ||
+        voices[0] ||
+        null
+      );
+    }
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+    }
+
+    function speakFromStart() {
+      window.speechSynthesis.cancel();
+      utterance = new SpeechSynthesisUtterance(EMAIL_BODY);
+      utterance.rate = rate;
+      const voice = pickVoice();
+      if (voice) utterance.voice = voice;
+      utterance.onstart = () => {
+        state = "speaking";
+        playBtn.textContent = "⏸";
+        playBtn.setAttribute("aria-label", "Pause");
+        setStatus("Speaking…");
+      };
+      utterance.onend = () => {
+        state = "idle";
+        playBtn.textContent = "▶";
+        playBtn.setAttribute("aria-label", "Play");
+        setStatus("Finished");
+      };
+      utterance.onerror = (e) => {
+        if (e.error === "interrupted" || e.error === "canceled") return;
+        setStatus("Playback error: " + e.error);
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    playBtn.addEventListener("click", () => {
+      if (state === "speaking") {
+        window.speechSynthesis.pause();
+        state = "paused";
+        playBtn.textContent = "▶";
+        playBtn.setAttribute("aria-label", "Resume");
+        setStatus("Paused");
+      } else if (state === "paused") {
+        window.speechSynthesis.resume();
+        state = "speaking";
+        playBtn.textContent = "⏸";
+        playBtn.setAttribute("aria-label", "Pause");
+        setStatus("Speaking…");
+      } else {
+        speakFromStart();
+      }
+    });
+
+    stopBtn.addEventListener("click", () => {
+      window.speechSynthesis.cancel();
+      state = "idle";
+      playBtn.textContent = "▶";
+      playBtn.setAttribute("aria-label", "Play");
+      setStatus("Stopped");
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (state !== "idle") speakFromStart();
+      else setStatus("Ready");
+    });
+
+    RATES.forEach((r) => {
+      const b = document.createElement("button");
+      b.textContent = r + "×";
+      b.setAttribute("aria-pressed", String(r === rate));
+      b.addEventListener("click", () => {
+        rate = r;
+        Array.from(ratesEl.children).forEach((el) => el.setAttribute("aria-pressed", "false"));
+        b.setAttribute("aria-pressed", "true");
+        if (state === "speaking") speakFromStart(); // Web Speech can't change rate mid-utterance
+      });
+      ratesEl.appendChild(b);
+    });
+
+    // Some browsers load voices asynchronously.
+    window.speechSynthesis.onvoiceschanged = () => {};
+  }
+</script>
+</body>
+</html>
